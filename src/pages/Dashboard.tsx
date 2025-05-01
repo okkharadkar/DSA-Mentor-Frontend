@@ -12,7 +12,7 @@ import {
 } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
+const API = import.meta.env.VITE_API_URL;
 const PerformanceChart = ({ stats }: { stats: any }) => {
     const data = {
         labels: ['Attempted', 'Solved', 'Attempts', 'Hints Used'],
@@ -45,14 +45,14 @@ const Dashboard = () => {
                 const token = localStorage.getItem('token');
 
                 // ✅ Fetch user profile
-                const profileResponse = await axios.get('https://dsa-mentor-backend.onrender.com/api/auth/profile', {
+                const profileResponse = await axios.get(`${API}/api/auth/profile`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 const user = profileResponse.data.user;
                 setUserData(user);
 
                 // ✅ Fetch problems from /api/getPs (use evaluation key)
-                const psResponse = await axios.get('https://dsa-mentor-backend.onrender.com/api/getPs', {
+                const psResponse = await axios.get(`${API}/api/getPs`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 const allProblems = psResponse.data.evaluation;

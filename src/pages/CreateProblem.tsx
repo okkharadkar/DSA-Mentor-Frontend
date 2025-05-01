@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
+const API = import.meta.env.VITE_API_URL;
 const CreateProblem = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -19,7 +19,7 @@ const CreateProblem = () => {
                 constraints,
             };
 
-            await axios.post('https://dsa-mentor-backend.onrender.com/api/PSsubmit', payload, {
+            await axios.post(`${API}/api/PSsubmit`, payload, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

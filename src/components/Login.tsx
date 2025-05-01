@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import { useAuth } from "@/Context/AuthContext";
-
+const API = import.meta.env.VITE_API_URL;
 
 interface LoginModal {
     onClose: () => void;
@@ -30,7 +30,7 @@ export const Login = ({ onClose, onLoginSuccess, onOpenSignup }: LoginModal) => 
     const handler = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const res = await axios.post('https://dsa-mentor-backend.onrender.com/api/auth/signin', {
+            const res = await axios.post(`${API}/api/auth/signin`, {
                 email,
                 password,
             });

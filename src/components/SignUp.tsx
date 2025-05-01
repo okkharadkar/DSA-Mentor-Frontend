@@ -10,7 +10,7 @@ interface SignupProps {
     onSignupSuccess: (user: { name: string; email: string }) => void;
     onOpenLogin: () => void;
 }
-
+const API = import.meta.env.VITE_API_URL;
 export const Signup = ({ onClose, onSignupSuccess, onOpenLogin }: SignupProps) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -24,7 +24,7 @@ export const Signup = ({ onClose, onSignupSuccess, onOpenLogin }: SignupProps) =
         setError(null);
 
         try {
-            const res = await axios.post("https://dsa-mentor-backend.onrender.com/api/auth/signup", {
+            const res = await axios.post(`${API}/api/auth/signup`, {
                 name,
                 email,
                 password,

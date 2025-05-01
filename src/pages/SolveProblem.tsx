@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useProblem } from '../Context/ProblemContext';
-
+const API = import.meta.env.VITE_API_URL;
 const SolveProblems = () => {
     const [problems, setProblems] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -22,7 +22,7 @@ const SolveProblems = () => {
                     return;
                 }
 
-                const res = await axios.get('https://dsa-mentor-backend.onrender.com/api/getPs', {
+                const res = await axios.get(`${API}/api/getPs`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 

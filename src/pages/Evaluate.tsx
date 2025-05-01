@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useProblem } from '../Context/ProblemContext';
-
+const API = import.meta.env.VITE_API_URL;
 const Evaluate = () => {
     const { selectedTitle } = useProblem();
     const [approach, setApproach] = useState('');
@@ -21,7 +21,7 @@ const Evaluate = () => {
             const token = localStorage.getItem('token');
 
             const res = await axios.post(
-                'https://dsa-mentor-backend.onrender.com/api/evaluatePS',
+                `${API}/api/evaluatePS`,
                 {
                     title: selectedTitle,
                     approach,
